@@ -13,7 +13,28 @@ var starrScreen = document.getElementById("start-screen");
 
 var score = 0;
 var seconds = 60;
-questionIndex = 0;
+currentQuestionIndex = 0;
+
+const questionsArray = [
+  {
+      question: "The Skeleton of a web page ____?",
+      choices: [
+          { text: "HTML", isCorrect: true },
+          { text: "CSS", isCorrect: false },
+          { text: "JS", isCorrect: false },
+          { text: "Choice 4", isCorrect: false }
+      ]
+  },
+  {
+      question: "What does CSS stand for?",
+      choices: [
+          { text: "Cascading Style Sheet", isCorrect: true },
+          { text: "Computer Style Sheet", isCorrect: false },
+          { text: "Creative Style Sheet", isCorrect: false },
+          { text: "Correct Style Sheet", isCorrect: false }
+      ]
+  }
+];
 
 // Start the timer when start is pressed
 
