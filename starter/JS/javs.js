@@ -6,11 +6,14 @@ var question_title = document.getElementById("question-title");
 var wrapper = document.querySelector('.wrapper');
 var elements = document.querySelectorAll('.hide');
 var firstHide = elements[0];
-var secondHide = elements[1];
+var feedBack = elements[1];
 var thirdHide = elements[2];
 var starrScreen = document.getElementById("start-screen");
 
+
+var score = 0;
 var seconds = 60;
+questionIndex = 0;
 
 // Start the timer when start is pressed
 
@@ -30,8 +33,64 @@ start.addEventListener("click", function () {
 
 
 function questions() {
-    question_title.innerText = "Question 1"
-    choices.innerHTML = "<button id='choice1'>Choice 1</button> <button id='choice2'>Choice 2</button> <button id='choice3'>Choice 3</button> <button id='choice4'>Choice 4</button>"
+    question_title.innerText = "The Skeleton of a web page ____?"
+    choices.innerHTML = "<button id='choice1' data-answer='true'>HTML</button> <button id='choice2'>CSS</button> <button id='choice3'>JS</button> <button id='choice4'>Choice 4</button>"
+  } 
+
+document.getElementById('choices').addEventListener('click', function(event) {
+  if (event.target.tagName === 'BUTTON') {
+    
+      var isCorrect = event.target.getAttribute('data-answer') === 'true';
+      if (isCorrect) {
+          // Increment the score for a correct answer
+          score++;
+          ifCorrect()
+          
+          // Perform additional actions for a correct answer
+      } else {
+          ifIncorrect()
+          // Perform actions for an incorrect answer
+      }
+      setTimeout(function() {
+        nextQuestion();
+    }, 2000);
+  }
+});
+
+function ifCorrect() {
+  feedBack.classList.remove('hide')
+  feedBack.innerText = "Correct"
+  feedBack.style.color = "green"
+  feedBack.style.fontWeight = "bold"
+  feedBack.style.fontSize = "20px"
+  feedBack.style.textAlign = "center"
 }
 
-  
+function ifIncorrect() {
+  feedBack.classList.remove('hide')
+  feedBack.innerText = "Wrong"
+  feedBack.style.color = "red"
+  feedBack.style.fontWeight = "bold"
+  feedBack.style.fontSize = "20px"
+  feedBack.style.textAlign = "center"
+}
+
+function nextQuestion() {
+  question_title.innerText = "A good name for a web page is ____?"
+  choices.innerHTML = "<button id='choice1' data-answer='true'>Mybody</button> <button id='choice2'>Myname</button> <button id='choice3'>Choice 3</button> <button id='choice4' data-answer='true'>Choice 4</button>"
+}
+cument.getElementById('choices').addEventListener('click', function(event) {
+  if (event.target.tagName === 'BUTTON') {
+      var isCorrect = event.target.getAttribute('data-answer') === 'true';
+      if (isCorrect) {
+          // Increment the score for a correct answer
+          score++;
+          ifCorrect()
+          
+          // Perform additional actions for a correct answer
+      } else {
+          ifIncorrect()
+          // Perform actions for an incorrect answer
+      }
+  }
+});
